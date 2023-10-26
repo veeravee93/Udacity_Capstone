@@ -44,18 +44,18 @@ jobs:
       # Build the Docker image
       - run:
           name: Build Docker Image
-          command: docker build -t harishbabua/capstone:latest .
+          command: docker build -t veeravee93/capstone:latest .
 
       # Log in to Docker Hub
       - run:
           name: Log in to Docker Hub
           command: |
-            echo "$DOCKERHUB_PASSWORD" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
+            docker login -u="${D_USER}" -p="${D_PWD}"
 
       # Push the Docker image to Docker Hub
       - run:
           name: Push Docker Image to Docker Hub
-          command: docker push harishbabua/capstone:latest
+          command: docker push veeravee93/capstone:latest
 
   deploy:
     executor: aws-eks/python3
