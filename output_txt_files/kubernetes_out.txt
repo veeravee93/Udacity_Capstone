@@ -1,0 +1,44 @@
+<paste log output from Kubernetes-mediated prediction, here>
+<paste log output from Kubernetes-mediated prediction, here>
+
+vboxuser@udacity-ubuntu:~/proj4/DevOps_Microservices/project-ml-microservice-kubernetes$ ./run_kubernetes.sh 
+deployment.apps/kubernetes-udaproj4 created
+NAME                                  READY   UP-TO-DATE   AVAILABLE   AGE
+deployment.apps/kubernetes-udaproj4   0/1     0            0           0s
+
+NAME                                             DESIRED   CURRENT   READY   AGE
+replicaset.apps/kubernetes-udaproj4-7c6696fb75   1         1         0       0s
+
+NAME                 TYPE        CLUSTER-IP   EXTERNAL-IP   PORT(S)   AGE
+service/kubernetes   ClusterIP   10.96.0.1    <none>        443/TCP   30m
+
+NAME                                       READY   STATUS              RESTARTS   AGE
+pod/kubernetes-udaproj4-7c6696fb75-kp4d6   0/1     ContainerCreating   0          0s
+vboxuser@udacity-ubuntu:~/proj4/DevOps_Microservices/project-ml-microservice-kubernetes$ ^C
+vboxuser@udacity-ubuntu:~/proj4/DevOps_Microservices/project-ml-microservice-kubernetes$ kubectl port-forward pod/kubernetes-udaproj4-7c6696fb75-kp4d6 --address 0.0.0.0 8000:80
+error: unable to forward port because pod is not running. Current status=Pending
+vboxuser@udacity-ubuntu:~/proj4/DevOps_Microservices/project-ml-microservice-kubernetes$ kubectl get pods
+NAME                                   READY   STATUS              RESTARTS   AGE
+kubernetes-udaproj4-7c6696fb75-kp4d6   0/1     ContainerCreating   0          75s
+vboxuser@udacity-ubuntu:~/proj4/DevOps_Microservices/project-ml-microservice-kubernetes$ kubectl get deployments
+NAME                  READY   UP-TO-DATE   AVAILABLE   AGE
+kubernetes-udaproj4   0/1     1            0           105s
+vboxuser@udacity-ubuntu:~/proj4/DevOps_Microservices/project-ml-microservice-kubernetes$ kubectl port-forward pod/kubernetes-udaproj4-7c6696fb75-kp4d6 --address 0.0.0.0 8000:80
+Forwarding from 0.0.0.0:8000 -> 80
+Handling connection for 8000
+Handling connection for 8000
+
+(.devops) vboxuser@udacity-ubuntu:~/proj4/DevOps_Microservices/project-ml-microservice-kubernetes$ ./make_prediction.sh 
+
+Port: 8000
+
+{
+
+  "prediction": [
+
+    20.35373177134412
+
+  ]
+
+}
+
