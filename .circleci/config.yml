@@ -97,8 +97,8 @@ jobs:
             $SUDO mv eksctl_download/eksctl /usr/local/bin/
             rmdir eksctl_download
       - aws-eks/create-cluster:
-          cluster-name: << parameters.cluster-name >>
-          aws-region: <<parameters.aws-region >>
+          cluster-name: capstone1
+          aws-region: us-east-2
       - run:
           name: Deploying application to EKS
           command: |
